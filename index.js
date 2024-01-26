@@ -52,9 +52,13 @@ inquirer
       type:'input',
       name:'github',
       message:'Please provide your GitHub username.'
-   }
+   },
+   { type:'list',
+name:'license',
+choices:['MIT','Apache 2.0','GPL 3.0','BSD 3','None']}
 ])
 .then((data) => {
+   console.log(data.license)
     const markdownContent = markdown.generateMarkdown(data);
     console.log(markdownContent);
       console.log(data);
