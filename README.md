@@ -14,8 +14,7 @@ q
 ## Usage
 q
 
-## License
-    This project is licensed under the MIT license.
+
 
 ## How to Contribute
 q
