@@ -47,13 +47,46 @@ This project is licensed under the ${license} license.`
   }
 }
 
+function renderSection(section){
+  console.log(section);
+  if (section === ''){
+    return '';
+  } else {
+    return `## ${section}`
+  }
+}
+
+function renderTableofContents(installation, usage, license){
+  if (installation && usage && license === ''){
+    return '';
+  } else {
+    let tableofContents = `## Table of Contents`
+    if (installation !== ''){
+      tableofContents += `\n- [Installation](#installation)`;
+    }
+    if (usage!== ''){
+      tableofContents += `\n- [Usage](#usage)`;
+    }
+    if (license!== ''){
+      tableofContents += `\n- [License](#license)`;
+    }
+  }
+}
+
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = ({title, description, installation, usage, contribution, tests, license, github, email}) => { 
+  const titleSection = renderSection(title);
+  const descriptionSection = renderSection(description);
+  const installationSection = renderSection(installation);
+  const usageSection = renderSection(usage);
+  const contributionSection = renderSection(contribution);
+  const testsSection = renderSection(tests);
+  const tableofContents = renderTableofContents(installation, usage, license);
   const licenseSection = renderLicenseSection(license);
 
   return `# ${title} 
 
-## Description
+${descriptionSection}
 ${description}
 
 ## Table of Contents 
@@ -61,28 +94,24 @@ ${description}
 - [Usage](#usage)
 - [License](#license)
 
-## Installation
+${installationSection}
 ${installation}
 
-## Usage
+${usageSection}
 ${usage}
 
 ${licenseSection}
 
-## How to Contribute
+${contributionSection}
 ${contribution}
 
-## Tests
+${testsSection}
 ${tests}
 
 ## Questions
 If you have any questions about this application, please contact me at <${email}> or visit my Github profile at https://github.com/${github}`
 }
 
-function test(){
-  console.log('test');
-}
 
-module.exports = {generateMarkdown,
-    test};
+module.exports = {generateMarkdown};
 
