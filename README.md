@@ -9,7 +9,7 @@ Simply fork or copy the repository, cd into the repo on your machine, and then r
 
 ## Usage
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ThE2ezoN_AY?si=1QKex0FNG4vuURVY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Youtube Video Tutorial](https://img.youtube.com/vi/ThE2ezoN_AY/0.jpg)](https://www.youtube.com/watch?v=ThE2ezoN_AY)
 
 When you cd into the repo, type `node index.js` into the console and answer the prompts.  Once you are finished, a README-Template.md file will be generated for you to copy and paste to whatever project you would like to use it for.  
 
