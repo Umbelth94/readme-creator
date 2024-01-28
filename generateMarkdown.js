@@ -1,4 +1,3 @@
-//Todo: Add options for generating live links, generate screenshot, and github link
 function renderLicenseBadge(license) {
   switch (license) {
     case 'MIT':
@@ -14,6 +13,7 @@ function renderLicenseBadge(license) {
       return '';
   }
 }
+
 
 function renderLicenseLink(license) {
   switch (license) {
@@ -33,14 +33,15 @@ function renderLicenseSection(license) {
   if (license === 'None'){
     return '';
   } else {
+
     const licenseLink = renderLicenseLink(license);
     return `## License
-
 ${licenseLink}
 
 This project is licensed under the ${license} license.`
   }
 }
+
 
 function renderSection(name, section){
   console.log(section);
@@ -138,12 +139,14 @@ const generateMarkdown = ({title, livelink, screenshot, description, installatio
   const licenseSection = renderLicenseSection(license);
   const questions = renderQuestions(email, github, repo);
 
+
   return `# ${title} 
   ${licenseBadge}
 
 ${liveLink}
 
 ${tableofContents}
+
 
 ${descriptionSection}
 
