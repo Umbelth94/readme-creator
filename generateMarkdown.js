@@ -32,11 +32,11 @@ function renderLicenseSection(license) {
   if (license === 'None'){
     return '';
   } else {
-    const licenseBadge = renderLicenseBadge(license);
+    // const licenseBadge = renderLicenseBadge(license);
     const licenseLink = renderLicenseLink(license);
-    console.log(licenseBadge, licenseLink);
+    // console.log(licenseBadge, licenseLink);
     return `## License
-${licenseBadge}
+
 
 ${licenseLink}
 
@@ -47,8 +47,11 @@ This project is licensed under the ${license} license.`
 
 const generateMarkdown = ({title, description, installation, usage, contribution, tests, license, github, email}) => { 
   const licenseSection = renderLicenseSection(license);
+  const licenseBadge = renderLicenseBadge(license);
 
   return `# ${title} 
+
+${licenseBadge}
 
 ## Description
 ${description}
