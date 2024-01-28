@@ -1,5 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+//Todo: Add options for generating live links, generate screenshot, and github link
 function renderLicenseBadge(license) {
   switch (license) {
     case 'MIT':
@@ -13,8 +12,6 @@ function renderLicenseBadge(license) {
   }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
 function renderLicenseLink(license) {
   switch (license) {
     case 'MIT':
@@ -28,8 +25,6 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
 function renderLicenseSection(license) {
   console.log(license);
   if (license === 'None'){
@@ -47,17 +42,34 @@ This project is licensed under the ${license} license.`
   }
 }
 
-function renderSection(section){
+function renderSection(name, section){
   console.log(section);
   if (section === ''){
     return '';
   } else {
-    return `## ${section}`
+    return `## ${name}`
+  }
+}
+
+function renderQuestions(email, github){
+  if (email === '' && github === ''){
+    console.log('No questions rendered');
+    return '';
+  } else {
+    let questions = `## Questions`
+    if (email!== ''){
+      questions += `\n- [Email](mailto:${email})`
+    }
+    if (github!== ''){
+      questions += `\n- [GitHub](https://github.com/${github})`
+    }
+    return questions;
   }
 }
 
 function renderTableofContents(installation, usage, license){
-  if (installation && usage && license === ''){
+  if ((installation === '' && usage === '') && license === 'None'){
+    console.log('No table of contents rendered');
     return '';
   } else {
     let tableofContents = `## Table of Contents`
@@ -67,32 +79,31 @@ function renderTableofContents(installation, usage, license){
     if (usage!== ''){
       tableofContents += `\n- [Usage](#usage)`;
     }
-    if (license!== ''){
+    if (license!== 'None'){
       tableofContents += `\n- [License](#license)`;
     }
+    return tableofContents;
   }
 }
 
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = ({title, description, installation, usage, contribution, tests, license, github, email}) => { 
   const titleSection = renderSection(title);
-  const descriptionSection = renderSection(description);
-  const installationSection = renderSection(installation);
-  const usageSection = renderSection(usage);
-  const contributionSection = renderSection(contribution);
-  const testsSection = renderSection(tests);
+  const descriptionSection = renderSection('Description',description);
+  const installationSection = renderSection('Installation',installation);
+  const usageSection = renderSection('Usage',usage);
+  const contributionSection = renderSection('Contributing',contribution);
+  const testsSection = renderSection('Tests',tests);
   const tableofContents = renderTableofContents(installation, usage, license);
   const licenseSection = renderLicenseSection(license);
+  const questions = renderQuestions(email, github);
 
   return `# ${title} 
 
 ${descriptionSection}
 ${description}
 
-## Table of Contents 
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
+${tableofContents}
 
 ${installationSection}
 ${installation}
@@ -108,8 +119,7 @@ ${contribution}
 ${testsSection}
 ${tests}
 
-## Questions
-If you have any questions about this application, please contact me at <${email}> or visit my Github profile at https://github.com/${github}`
+${questions}`
 }
 
 
