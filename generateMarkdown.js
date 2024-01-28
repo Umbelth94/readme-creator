@@ -9,6 +9,9 @@ function renderLicenseBadge(license) {
       return '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
     case 'BSD 3':
       return `[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)`;
+      
+    case 'None':
+      return '';
   }
 }
 
@@ -49,8 +52,30 @@ function renderSection(name, section){
   }
 }
 
-function renderQuestions(email, github){
-  if (email === '' && github === ''){
+function renderDescriptionSection(screenshot, section){
+  if (screenshot === '' && section === ''){
+    return '';
+    } else {
+      let description = `## Description
+      \n${section}`
+      if (screenshot!== ''){
+        description +=  `\n\n![Screenshot](assets/${screenshot})`
+      }
+      return description;
+  
+  }
+}
+
+function renderLiveLink(link){
+  console.log(link);
+  if (link === ''){
+    return '';
+  } else {
+    return `[Live Link](${link}`
+}}
+
+function renderQuestions(email, github, repo){
+  if (email === '' && github === '' && repo === ''){
     console.log('No questions rendered');
     return '';
   } else {
@@ -61,48 +86,66 @@ function renderQuestions(email, github){
     if (github!== ''){
       questions += `\n- [GitHub](https://github.com/${github})`
     }
+    if (repo!== ''){
+      questions += `\n- [Repository](${repo})`
+    }
     return questions;
   }
 }
 
-function renderTableofContents(installation, usage, license){
-  if ((installation === '' && usage === '') && license === 'None'){
+function renderTableofContents(description, installation, usage, license, tests, contribution, email, github, repo, screenshot) {
+  if (installation === '' && usage === '' && description === '' && license === 'None' && tests === '' && contribution === '' && email === '' && github === '' && repo === '' && screenshot === '') {
     console.log('No table of contents rendered');
     return '';
   } else {
-    let tableofContents = `## Table of Contents`
-    if (installation !== ''){
+    let tableofContents = `## Table of Contents`;
+    if (description !== '' || screenshot !== '') {
+      tableofContents += `\n- [Description](#description)`;
+    }
+    if (installation !== '') {
       tableofContents += `\n- [Installation](#installation)`;
     }
-    if (usage!== ''){
+    if (usage !== '') {
       tableofContents += `\n- [Usage](#usage)`;
     }
-    if (license!== 'None'){
+    if (license !== 'None') {
       tableofContents += `\n- [License](#license)`;
+    }
+    if (tests !== '') {
+      tableofContents += `\n- [Tests](#tests)`;
+    }
+    if (contribution !== '') {
+      tableofContents += `\n- [Contributing](#contributing)`;
+    }
+    if (email !== '' || github !== '' || repo !== '') {
+      tableofContents += `\n- [Questions](#questions)`;
     }
     return tableofContents;
   }
 }
 
+
 // TODO: Create a function to generate markdown for README
-const generateMarkdown = ({title, description, installation, usage, contribution, tests, license, github, email}) => { 
-  const titleSection = renderSection(title);
+const generateMarkdown = ({title, livelink, screenshot, description, installation, usage, contribution, tests, license, github, email, repo}) => { 
+  const liveLink = renderLiveLink(livelink)
   const licenseBadge = renderLicenseBadge(license);
-  const descriptionSection = renderSection('Description',description);
+  const descriptionSection = renderDescriptionSection(screenshot,description);
   const installationSection = renderSection('Installation',installation);
   const usageSection = renderSection('Usage',usage);
   const contributionSection = renderSection('Contributing',contribution);
   const testsSection = renderSection('Tests',tests);
-  const tableofContents = renderTableofContents(installation, usage, license);
+  const tableofContents = renderTableofContents(description, installation, usage, license, tests, contribution, email, github, repo);
   const licenseSection = renderLicenseSection(license);
-  const questions = renderQuestions(email, github);
+  const questions = renderQuestions(email, github, repo);
 
   return `# ${title} 
   ${licenseBadge}
 
-${descriptionSection}
+${liveLink}
 
 ${tableofContents}
+
+${descriptionSection}
 
 ${installationSection}
 

@@ -20,9 +20,19 @@ function init() {
          message: 'What is the title of your project?'
       },
       {
+         type:'input',
+         name: 'livelink',
+         message:'What is the link to your live site?'
+      },
+      {
          type: 'input',
          name: 'description',
          message: 'Please provide a description of your project.'
+      },
+      {
+         type:'input',
+         name:'screenshot',
+         message:'Please provide the image name and file extension of your screenshot (i.e. screenshot.jpeg), make sure that it is in an assets folder'
       },
       {
          type: 'input',
@@ -53,6 +63,11 @@ function init() {
          type:'input',
          name:'github',
          message:'Please provide your GitHub username.'
+      },
+      {
+         type:'input',
+         name:'repo',
+         message:'Please provide a link to your Github repository'
       },
       { type:'list',
    name:'license',
