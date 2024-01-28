@@ -30,11 +30,8 @@ function renderLicenseSection(license) {
   if (license === 'None'){
     return '';
   } else {
-    const licenseBadge = renderLicenseBadge(license);
     const licenseLink = renderLicenseLink(license);
-    console.log(licenseBadge, licenseLink);
     return `## License
-${licenseBadge}
 
 ${licenseLink}
 
@@ -47,7 +44,8 @@ function renderSection(name, section){
   if (section === ''){
     return '';
   } else {
-    return `## ${name}`
+    return `## ${name}
+  \n${section}`
   }
 }
 
@@ -89,6 +87,7 @@ function renderTableofContents(installation, usage, license){
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = ({title, description, installation, usage, contribution, tests, license, github, email}) => { 
   const titleSection = renderSection(title);
+  const licenseBadge = renderLicenseBadge(license);
   const descriptionSection = renderSection('Description',description);
   const installationSection = renderSection('Installation',installation);
   const usageSection = renderSection('Usage',usage);
@@ -99,25 +98,21 @@ const generateMarkdown = ({title, description, installation, usage, contribution
   const questions = renderQuestions(email, github);
 
   return `# ${title} 
+  ${licenseBadge}
 
 ${descriptionSection}
-${description}
 
 ${tableofContents}
 
 ${installationSection}
-${installation}
 
 ${usageSection}
-${usage}
 
 ${licenseSection}
 
 ${contributionSection}
-${contribution}
 
 ${testsSection}
-${tests}
 
 ${questions}`
 }
