@@ -25,6 +25,4 @@ Starter code can be found [here](https://github.com/coding-boot-camp/potential-e
 
 This project is licensed under the MIT license.
 
-## Future Plans
-- Add a function that renders the table of contents based on the content that the user has entered
-- Add a function that only renders the sections that the user entered information into.  
+
