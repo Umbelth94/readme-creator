@@ -112,11 +112,11 @@ function renderTableofContents(description, installation, usage, license, tests,
     if (license !== 'None') {
       tableofContents += `\n- [License](#license)`;
     }
-    if (tests !== '') {
-      tableofContents += `\n- [Tests](#tests)`;
-    }
     if (contribution !== '') {
       tableofContents += `\n- [Contributing](#contributing)`;
+    }
+    if (tests !== '') {
+      tableofContents += `\n- [Tests](#tests)`;
     }
     if (email !== '' || github !== '' || repo !== '') {
       tableofContents += `\n- [Questions](#questions)`;
@@ -146,7 +146,6 @@ const generateMarkdown = ({title, livelink, screenshot, description, installatio
 ${liveLink}
 
 ${tableofContents}
-
 
 ${descriptionSection}
 
